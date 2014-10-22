@@ -39,4 +39,20 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.assets.compress = true
+  config.assets.compile = true
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+ 
+  config.assets.configure do |env|
+    env.js_compressor  = :uglify # or :closure, :yui
+    env.css_compressor = :sass   # or :yui
+ 
+    env.logger = Rails.logger
+ 
+    env.cache = ActiveSupport::Cache::FileStore.new("tmp/cache/assets")
+  end
+
 end
